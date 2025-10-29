@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
-const db = require("../config/db");
-const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 // Register akun
 router.post("/register", authController.register);
@@ -10,8 +9,10 @@ router.post("/register", authController.register);
 // Login
 router.post("/login", authController.login);
 
+// Refresh Token
 router.post("/token", authController.refreshToken);
 
-router.delete("/logout", authController.logout);
+// Logout
+router.delete("/logout", auth, authController.logout);
 
 module.exports = router;
