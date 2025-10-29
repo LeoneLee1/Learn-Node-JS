@@ -37,4 +37,6 @@ app.put("/users/update/:id", userRoutes);
 // Delete users data by id
 app.delete("/users/delete/:id", userRoutes);
 
+app.get("/users/profile", userRoutes);
+
 module.exports = app;
