@@ -1,5 +1,6 @@
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 // Logger Manual
 const logger = require("./middleware/logger");
@@ -37,6 +38,14 @@ app.put("/users/update/:id", userRoutes);
 // Delete users data by id
 app.delete("/users/delete/:id", userRoutes);
 
+// Get Profile User
 app.get("/users/profile", userRoutes);
+
+// Register User
+app.post("/register", authRoutes);
+
+app.post("/login", authRoutes);
+
+app.get("/admin", userRoutes);
 
 module.exports = app;

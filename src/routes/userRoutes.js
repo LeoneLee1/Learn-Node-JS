@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/usersController");
 const auth = require("../middleware/auth");
+const authorize = require("../middleware/authorize");
 
 // Get all users Data
 router.get("/users", userController.getAllUsers);
@@ -23,6 +24,13 @@ router.get("/users/profile", auth, (req, res) => {
   res.json({
     message: "Selamat datang di halaman profil",
     user: "Daniel Lee",
+  });
+});
+
+router.get("/admin", auth, authorize("admin"), (req, res) => {
+  res.json({
+    message: "Selamat datang Admin",
+    user: req.user,
   });
 });
 

@@ -1,15 +1,17 @@
+const jwt = require("jsonwebtoken");
+
 const auth = (req, res, next) => {
-  const token = req.headers["authorization"];
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
 
-  if (!token) {
-    return res.status(401).json({ message: "Tidak ada token. Akses ditolak!" });
-  }
+  if (!token) return res.status(401).json({ message: "Token tidak ada" });
 
-  if (token !== "Bearer mysecrettokken123") {
-    return res.status(403).json({ message: "Token tidak valid!" });
-  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ message: "Token tidak valid" });
 
-  next();
+    req.user = user;
+    next();
+  });
 };
 
 module.exports = auth;
