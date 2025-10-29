@@ -48,4 +48,8 @@ app.post("/login", authRoutes);
 
 app.get("/admin", userRoutes);
 
+app.post("/token", authRoutes);
+
+app.delete("/logout", authRoutes);
+
 module.exports = app;
