@@ -87,6 +87,6 @@ exports.logout = (req, res) => {
   db.query("UPDATE users SET refresh_token = NULL WHERE refresh_token = ?", refreshToken, (err, result) => {
     if (err) return res.status(500).json({ message: "Server error" });
 
-    res.json({ message: "Logout berhasil" });
+    res.json({ message: "Logout berhasil", result });
   });
 };
