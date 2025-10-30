@@ -1,6 +1,7 @@
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
 
 // Logger Manual
 const logger = require("./middleware/logger");
@@ -51,5 +52,9 @@ app.get("/admin", userRoutes);
 app.post("/token", authRoutes);
 
 app.delete("/logout", authRoutes);
+
+app.use("/uploads", express.static("uploads"));
+
+app.use("/upload", uploadRoutes);
 
 module.exports = app;
