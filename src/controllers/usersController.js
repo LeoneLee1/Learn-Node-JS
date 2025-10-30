@@ -74,3 +74,17 @@ exports.deleteUsersData = async (req, res) => {
     res.json(result);
   });
 };
+
+exports.getProfile = (req, res) => {
+  res.json({
+    message: "Selamat datang di halaman profil",
+    user: "Daniel Lee",
+  });
+};
+
+exports.admin = (req, res) => {
+  res.json({
+    message: "Selamat datang Admin",
+    user: req.user,
+  });
+};
