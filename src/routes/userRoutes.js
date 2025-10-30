@@ -20,18 +20,8 @@ router.put("/users/update/:id", userController.updateUsersData);
 router.delete("/users/delete/:id", userController.deleteUsersData);
 
 // Profile users
-router.get("/users/profile", auth, (req, res) => {
-  res.json({
-    message: "Selamat datang di halaman profil",
-    user: "Daniel Lee",
-  });
-});
+router.get("/users/profile", auth, userController.getProfile);
 
-router.get("/admin", auth, authorize("admin"), (req, res) => {
-  res.json({
-    message: "Selamat datang Admin",
-    user: req.user,
-  });
-});
+router.get("/admin", auth, authorize("admin"), userController.admin);
 
 module.exports = router;
